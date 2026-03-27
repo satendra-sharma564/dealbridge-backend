@@ -17,3 +17,21 @@ exports.getPlatforms = (req, res) => {
         ]
     });
 };
+
+exports.addPlatform = (req, res) => {
+    const { name, logo, link, color } = req.body;
+    const platform = new Platform({ name, logo, link, color });
+    platform.save();
+    res.json({ success: true, data: platform });
+};
+
+exports.updatePlatform = async (req, res) => {
+    const { name, logo, link, color } = req.body;
+    const platform = await Platform.findByIdAndUpdate(req.params.id, { name, logo, link, color }, { new: true });
+    res.json({ success: true, data: platform });
+};
+
+exports.deletePlatform = async (req, res) => {
+    const platform = await Platform.findByIdAndDelete(req.params.id);
+    res.json({ success: true, data: platform });
+};
