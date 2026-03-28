@@ -32,6 +32,7 @@ connectDB();
 const productRoutes = require('./routes/product_routes');
 const clickRoutes = require('./routes/click_routes');
 const platformRoutes = require('./routes/platform_routes');
+const versionRoutes = require('./routes/version_routes');
 
 // ✅ Middlewares
 app.use(cors());
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
 app.use('/api', productRoutes);
 app.use('/api/click', clickRoutes);
 app.use('/api/platforms', platformRoutes);
+app.use('/api', versionRoutes);
 
 // ✅ Server start
 const PORT = process.env.PORT || 3000;
