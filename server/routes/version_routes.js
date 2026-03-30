@@ -3,8 +3,8 @@ const router = express.Router();
 
 // ✅ Update this version whenever you release a new APK
 // Format: "major.minor.patch" — must match pubspec.yaml version
-const CURRENT_VERSION = "1.0.1"; // <-- Change this when you release a new APK
-const APK_DOWNLOAD_URL = "https://drive.google.com/uc?export=download&id=1jw3UarZ1iKOKwYAT8vb0bYZQtAT7lQog";
+const CURRENT_VERSION = "1.0.2"; // <-- Change this when you release a new APK
+const APK_DOWNLOAD_URL = "https://drive.google.com/uc?export=download&id=1kPuyN7-CiGxcqthuHv8rw3HWgCL7nLK-";
 
 router.get('/version', (req, res) => {
   res.json({
