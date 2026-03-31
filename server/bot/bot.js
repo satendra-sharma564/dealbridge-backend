@@ -12,7 +12,7 @@ bot.onText(/\/start/, (msg) => {
 💰 Save Money on Shopping  
 
 👇 Explore Now:
-https://your-website-link.com
+https://t.me/c/3868867887/2
   `);
 });
 
