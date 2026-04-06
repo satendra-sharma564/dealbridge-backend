@@ -54,9 +54,9 @@ exports.addPlatform = async (req, res) => {
     try {
         console.log("📥 Incoming:", req.body);
 
-        const { name, logo, link, color } = req.body;
+        const { name, logo, link, color, category } = req.body;
 
-        const platform = new Platform({ name, logo, link, color });
+        const platform = new Platform({ name, logo, link, color, category });
         await platform.save(); // ⚠️ IMPORTANT (await)
 
         res.status(201).json({ success: true, data: platform });
