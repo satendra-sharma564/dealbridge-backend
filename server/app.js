@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -5,6 +6,10 @@ const connectDB = require('./config/db');
 
 // ✅ DB Connect
 connectDB();
+
+// ✅ Telegram Auto-Post Scheduler
+const { startScheduler } = require('./bot/scheduler');
+startScheduler();
 
 // ✅ Routes import
 const productRoutes = require('./routes/product_routes');
@@ -35,4 +40,4 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-});
+});

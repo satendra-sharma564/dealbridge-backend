@@ -7,10 +7,11 @@ const productSchema = new mongoose.Schema({
     mrp: Number,
     description: String,
     category: String,
+    discount: Number,
     links: [{
         platform: String,
         url: String
     }]
-});
+}, { timestamps: true }); // ✅ createdAt & updatedAt auto-generate
 
 module.exports = mongoose.model('Product', productSchema);
