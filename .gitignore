@@ -1,3 +1,7 @@
 node_modules
 .env
 .DS_Store
+
+# 🔐 Firebase / Google Service Account Credentials (NEVER commit these)
+server/config/*.json
+server/config/dealora-34a2e-firebase-adminsdk-fbsvc-734e62057b.json
