@@ -1,19 +1,28 @@
 const TelegramBot = require('node-telegram-bot-api');
 
-const token = "8702553327:AAF_8ojR5vN8_SOlfUnxN8XMe4GAmGB5jDo"; // 👈 new token use karo
-const bot = new TelegramBot(token, { polling: true });
+const TOKEN = process.env.TELEGRAM_BOT_TOKEN || "8702553327:AAF_8ojR5vN8_SOlfUnxN8XMe4GAmGB5jDo";
 
-// 👉 START COMMAND
+// Polling true — commands ke liye
+const bot = new TelegramBot(TOKEN, { polling: true });
+
+// 👉 /start COMMAND
 bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, `
-👋 Welcome to DealBridge 🔥
+👋 *Welcome to DealBridge!* 🔥
 
-🛍 Best Deals Daily  
-💰 Save Money on Shopping  
+🛍 *Best Deals Daily*  
+💰 *Save Money on Shopping*  
 
-👇 Explore Now:
-https://t.me/c/3868867887/2
-  `);
+👇 *Explore Now:*
+https://t.me/dealbridge_deals
+
+🔔 Latest deals seedha channel pe milti hain!
+  `, { parse_mode: 'Markdown' });
 });
 
-console.log("🤖 Bot Started...");
+// 👉 /chatid COMMAND — channel ID nikalne ke liye
+bot.onText(/\/chatid/, (msg) => {
+    bot.sendMessage(msg.chat.id, `🆔 Your Chat ID: \`${msg.chat.id}\``, { parse_mode: 'Markdown' });
+});
+
+console.log("🤖 DealBridge Bot Started...");
