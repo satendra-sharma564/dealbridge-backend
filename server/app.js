@@ -17,6 +17,7 @@ const clickRoutes = require('./routes/click_routes');
 const platformRoutes = require('./routes/platform_routes');
 const versionRoutes = require('./routes/version_routes');
 const categoryRoutes = require('./routes/category_routes');
+const notificationRoutes = require('./routes/notification_routes');
 
 // ✅ Middlewares
 app.use(cors());
@@ -34,6 +35,7 @@ app.use('/api/click', clickRoutes);
 app.use('/api/platforms', platformRoutes);
 app.use('/api', versionRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // ✅ Server start
 const PORT = process.env.PORT || 3000;
