@@ -1,15 +1,21 @@
+// ✅ Override local DNS with Google DNS (local DNS fails to resolve Atlas SRV records)
+require('dns').setServers(['8.8.8.8', '8.8.4.4']);
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const connectDB = require('./config/db');
 
-// ✅ DB Connect
-connectDB();
-
 // ✅ Telegram Auto-Post Scheduler
 const { startScheduler } = require('./bot/scheduler');
-startScheduler();
+
+// ✅ DB Connect — pehle DB connect ho, PHIR scheduler start
+connectDB().then(() => {
+    startScheduler();
+}).catch(err => {
+    console.error('DB connection failed:', err.message);
+});
 
 // ✅ Routes import
 const productRoutes = require('./routes/product_routes');

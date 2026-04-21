@@ -1,8 +1,14 @@
 const cron = require('node-cron');
+const mongoose = require('mongoose');
 const Product = require('../models/product_model');
 const { postProductToTelegram, postCustomMessage } = require('./telegramService');
 
 let schedulerRunning = false;
+
+// DB ready hai check karne ke liye helper
+function isDbReady() {
+    return mongoose.connection.readyState === 1; // 1 = connected
+}
 
 /**
  * Aaj add hue products ko track karne ke liye
@@ -14,6 +20,10 @@ const postedProductIds = new Set();
  * Latest products fetch karke post karta hai jo abhi tak post nahi hue
  */
 async function postLatestProducts() {
+    if (!isDbReady()) {
+        console.log('⏳ DB still connecting, skipping scheduler run...');
+        return;
+    }
     try {
         // Last 1 ghante mein add hue products fetch karo
         const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
